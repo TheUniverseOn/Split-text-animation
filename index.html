@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+        <meta http-equiv="X-UA-Compatible" content = "ie=edge">
+        <link rel="stylesheet" href="style.css">
+        <title> Sophonias </title>
+        <script src="https://cdn.rawgit.com/bradley/Blotter/master/build/blotter.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/materials/channelSplitMaterial.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+       <div id="main"></div>
+        
+        <script>
+			
+		container = document.getElementById("main");
+			
+		const text = new Blotter.Text("Welcome to my Github page", {
+			family: "serif", 
+			size: 100, 
+			fill: "#000", 
+			paddingLeft: 80, 
+			paddingTop: 80, 
+			paddingRight: 80, 
+			paddingBottom: 80
+		});
+			
+			var material = new Blotter.ChannelSplitMaterial(); 
+			
+			material.uniforms.uOffset.value = 0.05; 
+			material.uniforms.uRotation.value = 50; 
+			material.uniforms.uApplyBlur.value = 1; 
+			material.uniforms.uAnimateNoise.value = 0.3; 
+			let blotter = new Blotter(material, {
+				texts: text
+			}); 
+			
+			var scope = blotter.forText(text); 
+			
+			scope.appendTo(container);
+			
+			document.onmousemove = moveIt;
+			function moveIt(event) {
+				material.uniforms.uRotation.value = (event.clientX * .1);
+				material.uniforms.uOffset.value = (event.clientX * 0.0001);
+			}
+		</script>
+    </body>
+</html>
